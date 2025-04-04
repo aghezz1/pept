@@ -1,0 +1,31 @@
+algo: mpc_acados
+algo_config:
+  horizon: 20
+  r_mpc:
+    - 0.1
+    - 0.1
+    - 0.1
+    - 0.1
+  q_mpc:
+    - 5.0
+    - 0.1
+    - 5.0
+    - 0.1
+    - 5.0
+    - 0.1
+    - 0.1
+    - 0.1
+    - 0.1
+    - 0.1
+    - 0.1
+    - 0.1
+  # Prior info
+  prior_info:
+    prior_prop: null
+    randomize_prior_prop: False
+    prior_prop_rand_info: null
+  initial_guess_t0:
+    initialize: True
+    initialization_type: "tracking_goal"  # "tracking_goal", "lqr", "ipopt", "policy"
+  use_RTI: True
+  initialization: "shifting"  # "warm_starting" "shifting"

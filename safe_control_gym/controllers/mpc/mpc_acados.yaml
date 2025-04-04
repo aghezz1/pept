@@ -1,0 +1,16 @@
+# MPC args
+horizon: 50
+r_mpc:
+  - 0.1
+q_mpc:
+  - 1.
+soft_constraints: False
+constraint_tol: 1.0e-6
+initial_guess_t0:
+    initialize: True
+    initialization_type: "tracking_goal"  # "tracking_goal", "lqr", "ipopt", "policy"
+use_RTI: False
+initialization: "warm_starting"  # "warm_starting" "shifting"
+# Runner args
+deque_size: 10
+eval_batch_size: 10
