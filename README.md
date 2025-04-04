@@ -30,21 +30,16 @@ conda create -n safe python=3.10
 conda activate safe
 ```
 
-### Install
+### Install `pept` repo
 
-Install the `pept` repository
+#### Install `safe-control-gym`
 
 ```bash
 python -m pip install --upgrade pip
 python -m pip install -e .
 ```
 
-Install `L4CasADi` (CPU only installation)
-
-Ensure Torch CPU-version is installed
-```
-pip install torch>=2.0 --index-url https://download.pytorch.org/whl/cpu
-```
+#### Install `L4CasADi` (CPU only installation)
 
 Ensure all build dependencies are installed
 ```
@@ -54,31 +49,23 @@ cmake>=3.27
 ninja>=1.11
 ```
 Run
+```bash
+python -m pip install l4casadi --no-build-isolation
 ```
-pip install l4casadi --no-build-isolation
-```
+**NOTE**: I experienced issues with the compilation of CasADi functions on macOS as the default compiler in l4casadi is `gcc`, I solved by aliasing `gcc` to `clang`.
+Another option is to open the l4casadi package installed in your environment and edit [L337](https://github.com/Tim-Salzmann/l4casadi/blob/eb6fc5c81aee29340b7e4b96e71226a88e1fa54c/l4casadi/l4casadi.py#L337) from `gcc` to `clang`.
+
 More info at [l4casadi github](https://github.com/Tim-Salzmann/l4casadi)
 
-#### Note
-
-You may need to separately install `gmp`, a dependency of `pycddlib`:
-
- ```bash
-conda install -c anaconda gmp
- ```
-
-or
-
-  ```bash
- sudo apt-get install libgmp-dev
- ```
-
- ### Install `acados`
+#### Install `acados`
 
 You need to separately install [`acados`](https://github.com/acados/acados) (>= v0.4.4) for fast MPC implementations.
 
 - To build and install acados, see their [installation guide](https://docs.acados.org/installation/index.html).
 - To set up the acados python interface **in the same conda environment!**, check out [these installation steps](https://docs.acados.org/python_interface/index.html).
+  ```bash
+  python -m pip install -e PATH_TO_ACADOS_DIR/interfaces/acados_template
+  ```
 
 
 ## Usage
